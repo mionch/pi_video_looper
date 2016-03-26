@@ -6,9 +6,9 @@ import random
 class Playlist(object):
     """Representation of a playlist of movies."""
 
-    def __init__(self, movies, is_random):
-        """Create a playlist from the provided list of movies."""
-        self._movies = movies
+    def __init__(self, files, is_random):
+        """Create a playlist from the provided list of files."""
+        self._files = files
         self._index = None
         self._is_random = is_random
 
@@ -17,11 +17,11 @@ class Playlist(object):
         after reaching end.
         """
         # Check if no movies are in the playlist and return nothing.
-        if len(self._movies) == 0:
+        if len(self._files) == 0:
             return None
         # Start Random movie
         if self._is_random:
-            self._index = random.randrange(0, len(self._movies))
+            self._index = random.randrange(0, len(self._files))
         else:
             # Start at the first movie and increment through them in order.
             if self._index is None:
@@ -29,11 +29,11 @@ class Playlist(object):
             else:
                 self._index += 1
             # Wrap around to the start after finishing.
-            if self._index >= len(self._movies):
+            if self._index >= len(self._files):
                 self._index = 0
 
-        return self._movies[self._index]
+        return self._files[self._index]
 
     def length(self):
         """Return the number of movies in the playlist."""
-        return len(self._movies)
+        return len(self._files)
